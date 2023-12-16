@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "583351837588",
+    "project_id": "myprojectmad-ed06e",
+    "storage_bucket": "myprojectmad-ed06e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:583351837588:android:af6839529cdfa599782581",
+        "android_client_info": {
+          "package_name": "com.example.madearthguard"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAuteJWAOjIrqezhuYUi1tZT99kWBMIIb4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:583351837588:android:a20485a7853a5cc9782581",
+        "android_client_info": {
+          "package_name": "com.example.myprojectmad"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAuteJWAOjIrqezhuYUi1tZT99kWBMIIb4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
