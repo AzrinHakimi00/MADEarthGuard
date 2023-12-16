@@ -16,6 +16,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.Objects;
+
 public class SignUpPage extends AppCompatActivity {
 
     EditText ETemail, ETpassword, ETconfirmpassword;
@@ -63,9 +65,11 @@ public class SignUpPage extends AppCompatActivity {
                 }
                 else if(confirmpassword.isEmpty()){
                     ETconfirmpassword.setError("Please retype your password");
+                    ETconfirmpassword.requestFocus();
                 }
                 else if(!password.equals(confirmpassword)){
                     ETconfirmpassword.setError("The password does not match");
+                    ETconfirmpassword.requestFocus();
                 }
                 else if(!email.isEmpty() && !password.isEmpty() && !confirmpassword.isEmpty() && password.equals(confirmpassword)){
                     firebaseAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -75,7 +79,19 @@ public class SignUpPage extends AppCompatActivity {
                                 Toast.makeText(getApplicationContext(),"Sign Up Unsuccessful",Toast.LENGTH_LONG).show();
                             }
                             else{
-                                Toast.makeText(getApplicationContext(),"Sign Up Successful",Toast.LENGTH_LONG).show();
+                                Objects.requireNonNull(firebaseAuth.getCurrentUser()).sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if(task.isSuccessful()){
+                                            Toast.makeText(getApplicationContext(), "Sign up successful. Please verfy you email.", Toast.LENGTH_SHORT).show();
+                                            startActivity(new Intent(SignUpPage.this,VerificationPage.class));
+                                        }
+                                        else{
+                                            Toast.makeText(getApplicationContext(),"Sign Up Unsuccessful",Toast.LENGTH_LONG).show();
+                                        }
+                                    }
+                                });
+
                             }
                         }
                     });

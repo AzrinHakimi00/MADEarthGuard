@@ -72,11 +72,19 @@ public class LoginPage extends AppCompatActivity {
                                 Toast.makeText(getApplicationContext(),"Login Unsuccessful",Toast.LENGTH_LONG).show();
                             }
                             else{
-                                HashMap<String,String> map = new HashMap<>();
-                                map.put("email", email);
-                                map.put("password", password);
-                                database.getReference().child("users").setValue(map);
-                                startActivity(new Intent(LoginPage.this,HomePage.class));
+
+                                if(firebaseAuth.getCurrentUser().isEmailVerified()){
+                                    HashMap<String,String> map = new HashMap<>();
+                                    map.put("email", email);
+                                    map.put("password", password);
+                                    database.getReference().child("users").setValue(map);
+                                    startActivity(new Intent(LoginPage.this,HomePage.class));
+                                }
+                                else{
+                                    Toast.makeText(getApplicationContext()
+                                    ,"Email not verified",Toast.LENGTH_LONG).show();
+                                }
+
                             }
                         }
                     });
